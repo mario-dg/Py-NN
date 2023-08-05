@@ -1,8 +1,8 @@
 import nnfs
 from nnfs.datasets import spiral_data
 
-import activation as a
-from layer import DenseLayer
+from py_nn import activation as a
+from py_nn.layer import DenseLayer
 
 nnfs.init()
 

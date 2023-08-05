@@ -32,13 +32,25 @@ class DenseLayer:
         :param n_neurons: The number of neurons in the layer.
         :type n_neurons: int
         """
+        if (
+            not isinstance(n_inputs, int)
+            or not isinstance(n_neurons, int)
+            or n_inputs <= 0
+            or n_neurons <= 0
+        ):
+            raise ValueError("n_inputs and n_neurons must be positive integers")
+
         self.weights = 0.01 * np.random.randn(n_inputs, n_neurons)
         self.biases = np.zeros((1, n_neurons))
 
     def forward(self, inputs: np.ndarray) -> np.ndarray:
-        """Calculate output values from inputs, weights and biases.
+        """Forward method of DenseLayer class.
 
-        :param inputs: The input array to be passed forward through the dense layer.
-        :return: None.
+        :param inputs: Input data for the dense layer. Should be a numpy ndarray.
+        :return: Output data after the forward pass through the dense layer.
+                 Returns a numpy ndarray.
+
         """
+        if inputs.shape[1] != self.weights.shape[0]:
+            raise ValueError('The number of columns in inputs must be equal to the number of rows in weights.')
         return np.dot(inputs, self.weights) + self.biases

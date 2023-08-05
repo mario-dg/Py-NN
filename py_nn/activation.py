@@ -9,7 +9,7 @@ def relu(inputs: np.ndarray) -> np.ndarray:
     :return: Output array after applying ReLU activation function.
     :rtype: np.ndarray
     """
-    return np.maximum(0, inputs)
+    return np.clip(inputs, 0, None)
 
 
 def softmax(inputs: np.ndarray) -> np.ndarray:
